@@ -1,8 +1,9 @@
 #pragma once
-#include <vector>
-#include <tuple>
-#include <limits>
+#include <algorithm>
 #include <cmath>
+#include <limits>
+#include <tuple>
+#include <vector>
 
 /**
  * @brief Distance calculation methods for Dijkstra maps
@@ -30,24 +31,22 @@ public:
 private:
     int width;
     int height;
-    std::vector<std::vector<int>> distances;
     DistanceType distanceType;
+    std::vector<std::vector<int>> distances;
     
 public:
     /**
      * @brief Constructor - initializes all distances to UNREACHABLE
-     * @param w Width of the map
-     * @param h Height of the map  
-     * @param distType Distance calculation method (default: Manhattan)
+     * @param mapWidth Width of the map
+     * @param mapHeight Height of the map
+     * @param distType Distance calculation method (default: Euclidean)
      */
-    DijkstraMap(int widthParam, int heightParam, DistanceType distTypeParam = DistanceType::Euclidean ) 
-                : width(widthParam), height(heightParam), distanceType(distTypeParam)
+    DijkstraMap(int mapWidth, int mapHeight, DistanceType distType = DistanceType::Euclidean)
+        : width(mapWidth)
+        , height(mapHeight)
+        , distanceType(distType)
+        , distances(mapWidth, std::vector<int>(mapHeight, UNREACHABLE))
     {
-        distances.resize(width);
-        for (int x = 0; x < width; ++x) 
-        {
-            distances[x].resize(height, UNREACHABLE);
-        }
     }
     
     /**
@@ -162,12 +161,8 @@ public:
      */
     void clear()
     {
-        for (int x = 0; x < width; ++x) 
-        {
-            for (int y = 0; y < height; ++y) 
-            {
-                distances[x][y] = UNREACHABLE;
-            }
+        for (auto& column : distances) {
+            std::fill(column.begin(), column.end(), UNREACHABLE);
         }
     }
 
