@@ -9,7 +9,7 @@ static bool allWalkable(int, int) {
 }
 
 // Benchmark: Single goal, small map (10x10)
-static void BM_SingleGoalSmallMap(benchmark::State& state) {
+static void SingleGoalSmallMap(benchmark::State& state) {
     constexpr int size = 10;
     DijkstraMap map(size, size, DistanceType::Manhattan);
     CoordList goals = {{5, 5}};
@@ -21,10 +21,10 @@ static void BM_SingleGoalSmallMap(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * size * size);
 }
-BENCHMARK(BM_SingleGoalSmallMap);
+BENCHMARK(SingleGoalSmallMap);
 
 // Benchmark: Single goal, medium map (50x50)
-static void BM_SingleGoalMediumMap(benchmark::State& state) {
+static void SingleGoalMediumMap(benchmark::State& state) {
     constexpr int size = 50;
     DijkstraMap map(size, size, DistanceType::Manhattan);
     CoordList goals = {{25, 25}};
@@ -36,10 +36,10 @@ static void BM_SingleGoalMediumMap(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * size * size);
 }
-BENCHMARK(BM_SingleGoalMediumMap);
+BENCHMARK(SingleGoalMediumMap);
 
 // Benchmark: Single goal, large map (100x100)
-static void BM_SingleGoalLargeMap(benchmark::State& state) {
+static void SingleGoalLargeMap(benchmark::State& state) {
     constexpr int size = 100;
     DijkstraMap map(size, size, DistanceType::Manhattan);
     CoordList goals = {{50, 50}};
@@ -51,10 +51,10 @@ static void BM_SingleGoalLargeMap(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * size * size);
 }
-BENCHMARK(BM_SingleGoalLargeMap);
+BENCHMARK(SingleGoalLargeMap);
 
 // Benchmark: Single goal, very large map (200x200)
-static void BM_SingleGoalVeryLargeMap(benchmark::State& state) {
+static void SingleGoalVeryLargeMap(benchmark::State& state) {
     constexpr int size = 200;
     DijkstraMap map(size, size, DistanceType::Manhattan);
     CoordList goals = {{100, 100}};
@@ -66,10 +66,10 @@ static void BM_SingleGoalVeryLargeMap(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * size * size);
 }
-BENCHMARK(BM_SingleGoalVeryLargeMap);
+BENCHMARK(SingleGoalVeryLargeMap);
 
 // Benchmark: Multiple goals (4 corners), medium map
-static void BM_MultipleGoalsMediumMap(benchmark::State& state) {
+static void MultipleGoalsMediumMap(benchmark::State& state) {
     constexpr int size = 50;
     DijkstraMap map(size, size, DistanceType::Manhattan);
     CoordList goals = {{0, 0}, {0, size - 1}, {size - 1, 0}, {size - 1, size - 1}};
@@ -81,10 +81,10 @@ static void BM_MultipleGoalsMediumMap(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * size * size);
 }
-BENCHMARK(BM_MultipleGoalsMediumMap);
+BENCHMARK(MultipleGoalsMediumMap);
 
 // Benchmark: Many goals (10 random positions), medium map
-static void BM_ManyGoalsMediumMap(benchmark::State& state) {
+static void ManyGoalsMediumMap(benchmark::State& state) {
     constexpr int size = 50;
     DijkstraMap map(size, size, DistanceType::Manhattan);
     CoordList goals = {
@@ -99,10 +99,10 @@ static void BM_ManyGoalsMediumMap(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * size * size);
 }
-BENCHMARK(BM_ManyGoalsMediumMap);
+BENCHMARK(ManyGoalsMediumMap);
 
 // Benchmark: Manhattan distance
-static void BM_ManhattanDistance(benchmark::State& state) {
+static void ManhattanDistance(benchmark::State& state) {
     constexpr int size = 100;
     DijkstraMap map(size, size, DistanceType::Manhattan);
     CoordList goals = {{50, 50}};
@@ -114,10 +114,10 @@ static void BM_ManhattanDistance(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * size * size);
 }
-BENCHMARK(BM_ManhattanDistance);
+BENCHMARK(ManhattanDistance);
 
 // Benchmark: Chebyshev distance (8-directional)
-static void BM_ChebyshevDistance(benchmark::State& state) {
+static void ChebyshevDistance(benchmark::State& state) {
     constexpr int size = 100;
     DijkstraMap map(size, size, DistanceType::Chebyshev);
     CoordList goals = {{50, 50}};
@@ -129,10 +129,10 @@ static void BM_ChebyshevDistance(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * size * size);
 }
-BENCHMARK(BM_ChebyshevDistance);
+BENCHMARK(ChebyshevDistance);
 
 // Benchmark: Euclidean distance
-static void BM_EuclideanDistance(benchmark::State& state) {
+static void EuclideanDistance(benchmark::State& state) {
     constexpr int size = 100;
     DijkstraMap map(size, size, DistanceType::Euclidean);
     CoordList goals = {{50, 50}};
@@ -144,10 +144,10 @@ static void BM_EuclideanDistance(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * size * size);
 }
-BENCHMARK(BM_EuclideanDistance);
+BENCHMARK(EuclideanDistance);
 
 // Benchmark: Map clearing
-static void BM_MapClear(benchmark::State& state) {
+static void MapClear(benchmark::State& state) {
     constexpr int size = 100;
     DijkstraMap map(size, size, DistanceType::Manhattan);
 
@@ -158,10 +158,10 @@ static void BM_MapClear(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * size * size);
 }
-BENCHMARK(BM_MapClear);
+BENCHMARK(MapClear);
 
 // Benchmark: Finding unreachable tiles with obstacles
-static void BM_FindUnreachableTiles(benchmark::State& state) {
+static void FindUnreachableTiles(benchmark::State& state) {
     constexpr int size = 100;
     DijkstraMap map(size, size, DistanceType::Manhattan);
 
@@ -180,10 +180,10 @@ static void BM_FindUnreachableTiles(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * size * size);
 }
-BENCHMARK(BM_FindUnreachableTiles);
+BENCHMARK(FindUnreachableTiles);
 
 // Benchmark: Pathfinding with complex maze (checkerboard obstacles)
-static void BM_ComplexMaze(benchmark::State& state) {
+static void ComplexMaze(benchmark::State& state) {
     constexpr int size = 50;
     DijkstraMap map(size, size, DistanceType::Manhattan);
 
@@ -201,10 +201,10 @@ static void BM_ComplexMaze(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * size * size);
 }
-BENCHMARK(BM_ComplexMaze);
+BENCHMARK(ComplexMaze);
 
 // Benchmark: Rectangular map (wide)
-static void BM_RectangularMapWide(benchmark::State& state) {
+static void RectangularMapWide(benchmark::State& state) {
     constexpr int width = 200;
     constexpr int height = 50;
     DijkstraMap map(width, height, DistanceType::Manhattan);
@@ -217,10 +217,10 @@ static void BM_RectangularMapWide(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * width * height);
 }
-BENCHMARK(BM_RectangularMapWide);
+BENCHMARK(RectangularMapWide);
 
 // Benchmark: Rectangular map (tall)
-static void BM_RectangularMapTall(benchmark::State& state) {
+static void RectangularMapTall(benchmark::State& state) {
     constexpr int width = 50;
     constexpr int height = 200;
     DijkstraMap map(width, height, DistanceType::Manhattan);
@@ -233,10 +233,10 @@ static void BM_RectangularMapTall(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * width * height);
 }
-BENCHMARK(BM_RectangularMapTall);
+BENCHMARK(RectangularMapTall);
 
 // Benchmark: Single goal at corner vs center
-static void BM_CornerGoal(benchmark::State& state) {
+static void CornerGoal(benchmark::State& state) {
     constexpr int size = 100;
     DijkstraMap map(size, size, DistanceType::Manhattan);
     CoordList goals = {{0, 0}};
@@ -248,10 +248,10 @@ static void BM_CornerGoal(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * size * size);
 }
-BENCHMARK(BM_CornerGoal);
+BENCHMARK(CornerGoal);
 
 // Benchmark: Distance calculation only (no map generation)
-static void BM_DistanceCalculationManhattan(benchmark::State& state) {
+static void DistanceCalculationManhattan(benchmark::State& state) {
     DijkstraMap map(10, 10, DistanceType::Manhattan);
 
     for (auto _ : state) {
@@ -259,9 +259,9 @@ static void BM_DistanceCalculationManhattan(benchmark::State& state) {
         benchmark::DoNotOptimize(dist);
     }
 }
-BENCHMARK(BM_DistanceCalculationManhattan);
+BENCHMARK(DistanceCalculationManhattan);
 
-static void BM_DistanceCalculationChebyshev(benchmark::State& state) {
+static void DistanceCalculationChebyshev(benchmark::State& state) {
     DijkstraMap map(10, 10, DistanceType::Chebyshev);
 
     for (auto _ : state) {
@@ -269,9 +269,9 @@ static void BM_DistanceCalculationChebyshev(benchmark::State& state) {
         benchmark::DoNotOptimize(dist);
     }
 }
-BENCHMARK(BM_DistanceCalculationChebyshev);
+BENCHMARK(DistanceCalculationChebyshev);
 
-static void BM_DistanceCalculationEuclidean(benchmark::State& state) {
+static void DistanceCalculationEuclidean(benchmark::State& state) {
     DijkstraMap map(10, 10, DistanceType::Euclidean);
 
     for (auto _ : state) {
@@ -279,10 +279,10 @@ static void BM_DistanceCalculationEuclidean(benchmark::State& state) {
         benchmark::DoNotOptimize(dist);
     }
 }
-BENCHMARK(BM_DistanceCalculationEuclidean);
+BENCHMARK(DistanceCalculationEuclidean);
 
 // Benchmark: Memory access patterns - getDistance calls
-static void BM_GetDistanceAccess(benchmark::State& state) {
+static void GetDistanceAccess(benchmark::State& state) {
     constexpr int size = 100;
     DijkstraMap map(size, size, DistanceType::Manhattan);
     CoordList goals = {{50, 50}};
@@ -300,6 +300,6 @@ static void BM_GetDistanceAccess(benchmark::State& state) {
 
     state.SetItemsProcessed(state.iterations() * size * size);
 }
-BENCHMARK(BM_GetDistanceAccess);
+BENCHMARK(GetDistanceAccess);
 
 BENCHMARK_MAIN();
